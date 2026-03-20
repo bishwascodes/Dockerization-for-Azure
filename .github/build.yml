@@ -1,0 +1,16 @@
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: testing
+        run: |
+          docker run \
+            --rm \
+            -u $(id -u):$(id -g) \
+            -e DOTNET_CLI_HOME=/tmp/dotnet-home \
+            -e HOME=/tmp \
+            -e NUGET_PACKAGES=/tmp/nuget-packages \
+            -v .:/app \
+            -w /app \
+            mcr.microsoft.com/dotnet/sdk:10.0 \
+              dotnet test --no-restore tests/tests.csproj
