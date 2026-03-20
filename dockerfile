@@ -11,4 +11,4 @@ WORKDIR /app
 COPY --from=build /app/publish .
 ENV ASPNETCORE_URLS=http://+:80
 EXPOSE 80
-ENTRYPOINT ["dotnet", "dockerization-for-azure.dll"]
+ENTRYPOINT ["dotnet", "Dockerization-for-Azure.dll"]
