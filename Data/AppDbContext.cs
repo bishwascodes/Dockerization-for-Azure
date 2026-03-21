@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using CommunityToolkit.Datasync.Server.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using API.Models;
 
 namespace API.Data
@@ -27,6 +28,22 @@ namespace API.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.HasDefaultSchema(DefaultSchema);
+
+            modelBuilder.Entity<GroceryItem>(b =>
+            {
+                var updatedAt = b.Property(e => e.UpdatedAt)
+                    .ValueGeneratedNever()
+                    .Metadata;
+                updatedAt.SetBeforeSaveBehavior(PropertySaveBehavior.Save);
+                updatedAt.SetAfterSaveBehavior(PropertySaveBehavior.Save);
+
+                var version = b.Property(e => e.Version)
+                    .IsConcurrencyToken()
+                    .ValueGeneratedNever()
+                    .Metadata;
+                version.SetBeforeSaveBehavior(PropertySaveBehavior.Save);
+                version.SetAfterSaveBehavior(PropertySaveBehavior.Save);
+            });
         }
 
         private void UpdateDatasyncMetadata()
