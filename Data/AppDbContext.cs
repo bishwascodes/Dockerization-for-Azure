@@ -52,8 +52,15 @@ namespace API.Data
             {
                 if (entry.State is EntityState.Added or EntityState.Modified)
                 {
-                    entry.Entity.UpdatedAt = DateTimeOffset.UtcNow;
-                    entry.Entity.Version = RandomNumberGenerator.GetBytes(16);
+                    if (entry.Entity.UpdatedAt is null)
+                    {
+                        entry.Entity.UpdatedAt = DateTimeOffset.UtcNow;
+                    }
+
+                    if (entry.Entity.Version is null || entry.Entity.Version.Length == 0)
+                    {
+                        entry.Entity.Version = RandomNumberGenerator.GetBytes(16);
+                    }
                 }
             }
         }
