@@ -51,3 +51,11 @@ jobs:
           slot-name: 'Production'
           images: 'docker.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_5D15B83F185D4A8786A2A4115A5870E7 }}/dockerization-for-azure:${{ github.sha }}'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D9A8AC874E5F48BF8355380F609F3771 }}
+          app-settings-json: |
+            [
+              {
+                "name": "ConnectionStrings__DefaultConnection",
+                "value": "${{ secrets.CONNECTIONSTRINGS__DEFAULTCONNECTION }}",
+                "slotSetting": false
+              }
+            ]

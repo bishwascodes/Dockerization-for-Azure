@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "Bash(dotnet add:*)",
+      "Bash(powershell -Command \"[System.Reflection.Assembly]::LoadFrom\\('C:\\\\\\\\Users\\\\\\\\bishw\\\\\\\\.nuget\\\\\\\\packages\\\\\\\\communitytoolkit.datasync.server\\\\\\\\10.0.0\\\\\\\\lib\\\\\\\\net10.0\\\\\\\\CommunityToolkit.Datasync.Server.dll'\\).GetExportedTypes\\(\\) | Select-Object FullName\" 2>&1 | grep -i \"tablecontroller\\\\|Controller\")",
+      "Bash(powershell -Command \"[System.Reflection.Assembly]::LoadFrom\\('C:\\\\\\\\Users\\\\\\\\bishw\\\\\\\\.nuget\\\\\\\\packages\\\\\\\\communitytoolkit.datasync.server\\\\\\\\10.0.0\\\\\\\\lib\\\\\\\\net10.0\\\\\\\\CommunityToolkit.Datasync.Server.dll'\\).GetExportedTypes\\(\\).FullName\" 2>&1 | head -30)"
+    ]
+  }
+}
